@@ -1,0 +1,14 @@
+{
+  "schema": 1,
+  "rates": [
+    {
+      "currency": "USD",
+      "target": "SGD",
+      "rate": "1.2896",
+      "asof": "2026-11-18T12:02:28+00:00",
+      "pairs": [
+        "USDSGD=X"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,95 @@
+{
+  "schema": 1,
+  "quotes": [
+    {
+      "symbol": "AAPL",
+      "price": "183.50",
+      "asof": "2026-11-16T21:00:00+00:00",
+      "source": "Demo snapshot",
+      "currency": "USD",
+      "listing": {
+        "symbol": "AAPL",
+        "name": "Apple Inc.",
+        "exchange": "NasdaqGS",
+        "kind": "EQUITY",
+        "currency": "USD",
+        "price_unit": "USD"
+      }
+    },
+    {
+      "symbol": "DIS",
+      "price": "92.00",
+      "asof": "2026-11-16T21:00:00+00:00",
+      "source": "Demo snapshot",
+      "currency": "USD",
+      "listing": {
+        "symbol": "DIS",
+        "name": "The Walt Disney Company",
+        "exchange": "NYSE",
+        "kind": "EQUITY",
+        "currency": "USD",
+        "price_unit": "USD"
+      }
+    },
+    {
+      "symbol": "MSFT",
+      "price": "439.80",
+      "asof": "2026-11-16T21:00:00+00:00",
+      "source": "Demo snapshot",
+      "currency": "USD",
+      "listing": {
+        "symbol": "MSFT",
+        "name": "Microsoft Corporation",
+        "exchange": "NasdaqGS",
+        "kind": "EQUITY",
+        "currency": "USD",
+        "price_unit": "USD"
+      }
+    },
+    {
+      "symbol": "V",
+      "price": "292.40",
+      "asof": "2026-11-16T21:00:00+00:00",
+      "source": "Demo snapshot",
+      "currency": "USD",
+      "listing": {
+        "symbol": "V",
+        "name": "Visa Inc.",
+        "exchange": "NYSE",
+        "kind": "EQUITY",
+        "currency": "USD",
+        "price_unit": "USD"
+      }
+    },
+    {
+      "symbol": "JNJ",
+      "price": "158.50",
+      "asof": "2026-11-16T21:00:00+00:00",
+      "source": "Demo snapshot",
+      "currency": "USD",
+      "listing": {
+        "symbol": "JNJ",
+        "name": "Johnson & Johnson",
+        "exchange": "NYSE",
+        "kind": "EQUITY",
+        "currency": "USD",
+        "price_unit": "USD"
+      }
+    },
+    {
+      "symbol": "ME8U.SI",
+      "price": "1.68",
+      "asof": "2026-11-16T09:00:00+00:00",
+      "source": "Demo snapshot",
+      "currency": "SGD",
+      "listing": {
+        "symbol": "ME8U.SI",
+        "name": "Mapletree Industrial Trust",
+        "exchange": "SES",
+        "kind": "EQUITY",
+        "currency": "SGD",
+        "price_unit": "SGD"
+      }
+    }
+  ]
+}

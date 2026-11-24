@@ -1,0 +1,148 @@
+{
+  "schema": 1,
+  "revision": 0,
+  "next_id": 15,
+  "trades": [
+    {
+      "id": 1,
+      "date": "2026-08-03",
+      "symbol": "AAPL",
+      "side": "BUY",
+      "quantity": "20",
+      "price": "150",
+      "broker": "Syfe",
+      "fee": "2"
+    },
+    {
+      "id": 2,
+      "date": "2026-08-07",
+      "symbol": "DIS",
+      "side": "BUY",
+      "quantity": "20",
+      "price": "110",
+      "broker": "Syfe",
+      "fee": "2"
+    },
+    {
+      "id": 3,
+      "date": "2026-08-12",
+      "symbol": "MSFT",
+      "side": "BUY",
+      "quantity": "12",
+      "price": "412",
+      "broker": "moomoo",
+      "fee": "2"
+    },
+    {
+      "id": 4,
+      "date": "2026-08-21",
+      "symbol": "V",
+      "side": "BUY",
+      "quantity": "18",
+      "price": "270",
+      "broker": "IBKR",
+      "fee": "1.8"
+    },
+    {
+      "id": 5,
+      "date": "2026-08-24",
+      "symbol": "JNJ",
+      "side": "BUY",
+      "quantity": "22",
+      "price": "153",
+      "broker": "Syfe",
+      "fee": "2.2"
+    },
+    {
+      "id": 6,
+      "date": "2026-08-28",
+      "symbol": "V",
+      "side": "SELL",
+      "quantity": "3",
+      "price": "290",
+      "broker": "IBKR",
+      "fee": "1.2"
+    },
+    {
+      "id": 7,
+      "date": "2026-09-02",
+      "symbol": "AAPL",
+      "side": "BUY",
+      "quantity": "15",
+      "price": "160",
+      "broker": "Syfe",
+      "fee": "1.5"
+    },
+    {
+      "id": 8,
+      "date": "2026-09-15",
+      "symbol": "JNJ",
+      "side": "SELL",
+      "quantity": "6",
+      "price": "147",
+      "broker": "Syfe",
+      "fee": "1.2"
+    },
+    {
+      "id": 9,
+      "date": "2026-09-18",
+      "symbol": "MSFT",
+      "side": "BUY",
+      "quantity": "4",
+      "price": "409",
+      "broker": "Syfe",
+      "fee": "1"
+    },
+    {
+      "id": 10,
+      "date": "2026-10-05",
+      "symbol": "AAPL",
+      "side": "SELL",
+      "quantity": "25",
+      "price": "170",
+      "broker": "Syfe",
+      "fee": "2.5"
+    },
+    {
+      "id": 11,
+      "date": "2026-10-15",
+      "symbol": "IBM",
+      "side": "BUY",
+      "quantity": "5",
+      "price": "190",
+      "broker": "IBKR",
+      "fee": "1"
+    },
+    {
+      "id": 12,
+      "date": "2026-11-03",
+      "symbol": "IBM",
+      "side": "SELL",
+      "quantity": "5",
+      "price": "198",
+      "broker": "IBKR",
+      "fee": "1"
+    },
+    {
+      "id": 13,
+      "date": "2026-11-09",
+      "symbol": "V",
+      "side": "SELL",
+      "quantity": "4",
+      "price": "289",
+      "broker": "IBKR",
+      "fee": "1"
+    },
+    {
+      "id": 14,
+      "date": "2026-11-10",
+      "symbol": "ME8U.SI",
+      "side": "BUY",
+      "quantity": "1000",
+      "price": "1.61",
+      "broker": "Syfe",
+      "fee": "2",
+      "currency": "SGD"
+    }
+  ]
+}

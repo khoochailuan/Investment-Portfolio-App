@@ -1,0 +1,491 @@
+FOLIO LEDGER
+AN6007 Advanced Programming | Khoo Chai Luan | G2603254C | Section A
+
+START ON WINDOWS
+1. Extract the ZIP into a writable folder on your computer.
+2. Open that folder in File Explorer. Type cmd in its address bar and press Enter.
+3. With Python 3.11 or 3.12 installed, run these commands one at a time.
+
+   py -m venv .venv
+   .venv\Scripts\python.exe -m pip install -r requirements.txt
+   .venv\Scripts\python.exe main.py
+
+The requirements install Flet Web 1.0.0 or newer and its compatible
+web-server packages. The default browser launch was tested with
+Flet 1.0.0 and 1.1.2. Setup and live data updates need internet access.
+The app serves its browser interface locally at http://127.0.0.1:8550.
+If a browser window does not open automatically, enter that address.
+Keep the command window open while using Folio Ledger. Press Ctrl+C to stop.
+On later visits, run only the last command. For an occupied port, add --port 8551.
+
+MACOS OR LINUX
+   python3 -m venv .venv
+   .venv/bin/python -m pip install -r requirements.txt
+   .venv/bin/python main.py
+
+FROST INTERFACE
+Use Sections to reach every page. Wide windows also offer shortcuts to
+Overview, Transactions, Dividends, Performance and Copilot. Select the portfolio
+name to switch workspaces. Portfolio totals are in SGD. Each holding shows
+its own trading currency. Summary cards share the same size and layout across
+the app and reflow when the window narrows. On wide cards the P/L percentages
+sit beside the amounts. On narrow cards they sit below.
+
+To explore a disposable demo first, run preview.py in place of main.py using
+the same virtual environment. This opens the full app at 127.0.0.1:8560 with
+the sample prices and FX. Edits in this launcher expire when you stop it.
+Folio_Ledger_Report.docx includes screenshots and worked examples.
+
+To upgrade an existing installation, extract the new version into its own
+folder. Start main.py with --data-dir pointing to your existing data folder
+to open the same local portfolios.
+
+DEMO AND PERSONAL DATA
+The first launch opens Demo portfolio with 34 fictional trades, 17 US and SGX
+holdings, sample cash distributions and illustrative daily history. Use the
+workspace selector to open an empty personal journal or return to the demo.
+The workspaces save separately. Use main.py --data-dir rehearsal_data for a
+fresh rehearsal without changing either existing workspace.
+
+GLOBAL STOCK SYMBOLS
+New and edited trades require an internet connection to check the listing and
+get a usable market price. Supported listings include stocks, listed REITs and
+ETFs on any exchange covered by Yahoo Finance's stock feed. Use the same
+exchange-qualified symbol as yfinance. A future, currency pair, cryptoasset
+or index cannot be recorded as a stock.
+
+In Add transaction, type a ticker or company name. Search results show
+the symbol, company and exchange. Select the listing from your confirmation.
+For example, Mapletree Industrial Trust trades as ME8U.SI on SGX and
+NVIDIA trades as NVDA on Nasdaq. Press Enter to look up an exact ticker or
+a unique local code such as ME8U. A name or ambiguous code requires a
+listing selection. Keep leading zeroes and suffixes, such as 0700.HK,
+7203.T and VOD.L. The app validates the listing before saving.
+
+STOCK SPLITS
+Enter buys and sells exactly as executed. In Transactions, select Record stock
+split and enter the first split-adjusted trading date and the new and old share
+counts. For Sandisk (SNDK), the first split-adjusted trading date was 20-11-2026,
+with 8 new shares for 1 old share. The form suggests these values for SNDK.
+An original purchase of 10 shares at US$800 becomes 80 shares with a US$100
+per-share cost before fees. The total cost stays US$8,000 before fees.
+The split is applied before trades dated on its first split-adjusted session.
+If you previously entered a pre-split buy using adjusted shares or entered
+extra shares as a buy, reconcile those entries against your original statement
+before recording the split. Use a fresh extract and point --data-dir at the
+folder with your existing records. Refresh market history for adjusted charts.
+Source: https://investor.sandisk.com/static-files/91c17135-5e20-4671-820e-736c80b4765c
+
+TRADE DATE, AMOUNT AND NOTES
+Choose the transaction date by typing DD-MM-YYYY or using the calendar.
+The form suggests the Yahoo closing price for that exact exchange date,
+or the latest traded price when it belongs to the selected session. The
+reference includes its date and source. On a holiday, a weekend or when
+data is unavailable, enter your confirmed execution price. Historical
+closes use the share unit in effect on the selected date. You can override
+a suggestion or choose Use date price to restore it.
+
+Choose Quantity to enter executed shares. Choose Amount to enter the gross
+trade value before fees in the listing currency. For example, S$160 at
+S$1.60 gives 100 shares. A separate S$1 buy fee brings the open cost to
+S$161. A sale deducts the fee from proceeds. Fractional shares support six
+decimal places. If that precision cannot reproduce the amount, enter the
+quantity from your broker. Add a note of up to 1,000 characters. View note
+opens it in Transactions. The transaction filter also searches note text.
+
+Enter prices and fees in the currency shown in the form, using the trade
+confirmation. The app converts London quotes in pence to pounds. For example,
+116.25 GBp equals GBP 1.1625. Enter GBP 1.1625 for that purchase price.
+Realised P/L opens with sales from every market translated into SGD.
+Prices can be delayed and quote timestamps are shown. Select a saved brokerage
+or choose Create new brokerage. Record same-day trades in execution order. The editable exit fee defaults to USD 2
+on a USD enquiry and zero on other currencies.
+
+IMPORT A CSV OR BROKERAGE STATEMENT
+Select Import trades in Transactions or Add transaction. Choose a CSV
+export or searchable PDF. The statement is processed on your computer.
+The market service receives the stock queries needed to verify listings.
+
+The example assets/trades_template.csv shows both entry modes. Common
+CSV headings map automatically. Open Column mapping for custom headers.
+Provide a date, symbol or company name, buy/sell action, and two of
+quantity, unit price and gross amount. Broker and currency may be included
+per row. Set Default brokerage for missing broker names. Fees are in the
+trading currency. Blank fees count as zero. Check for separate commissions,
+clearing charges and taxes when reconciling a statement.
+
+To reuse a CSV layout, choose its brokerage, such as Syfe or DBS Vickers,
+and select Save CSV mapping after assigning its columns. The date order and
+same-day row order are saved with the mapping. For another CSV, choose that
+brokerage and select Use saved mapping. A brokerage identified in the file
+loads its matching mapping automatically. Mappings live in the workspace
+and match the CSV's headers. A file with unique headers can reorder its
+columns. When a brokerage changes its headers, map the new layout and save it.
+
+The reader also recognises the stock Trades section in an Interactive
+Brokers Activity CSV. PDF support covers text-based trade tables and
+contract notes with labelled fields. Image-only scans, locked PDFs and
+unrecognised layouts need an unlocked searchable document or a CSV export.
+Check the number of extracted trades against the original statement.
+
+Choose the numeric date order for dates such as 03/04/2026. For same-day
+trades, the app uses execution times where the group supplies them.
+Otherwise choose whether the rows are oldest or newest first. Earlier
+saved entries keep their original order within a date.
+Choose Review trades. Edit row lets you correct values or choose the
+exchange for an ambiguous name. Possible duplicate executions start
+unchecked. Rows previously imported from the same file are identified.
+Use Compare statement totals to enter fees, net trade cash and bought or
+sold quantities from the statement for the checked executions. Cash totals
+are grouped by brokerage and currency. Shares are checked by listing and side.
+Net trade cash is sale proceeds less buy payments, after fees. Enter a
+negative figure for a net payment. Differences update when you edit a row or
+change the selection. The statement totals are optional and apply to the
+current review.
+
+Only checked rows are saved. The batch is validated together before the
+ledger is updated, including whether each sale has enough shares.
+
+COST BASIS METHOD
+Choose Cost basis method in Overview, Transactions or Realised P/L. FIFO
+uses the earliest open purchases at that brokerage. AVCO uses the moving
+weighted-average cost of the shares in that stock and brokerage immediately
+before each sale. Both include purchase fees and deduct selling fees.
+For example, buy 10 shares at S$1 and 10 at S$3 with zero fees, then sell
+5 at S$4. FIFO assigns S$5 of cost and records S$15 profit. AVCO assigns
+S$10 of cost and records S$10 profit. The respective remaining costs are
+S$35 and S$30. Both methods leave the same 15 shares.
+
+Each workspace saves its method. Existing journals start with FIFO.
+Switching methods recalculates existing sales, open costs, allocation and
+the recovery planner. View lots shows the purchases used under FIFO.
+View pool shows the units and cost held immediately before an AVCO sale.
+
+READ THE SGD OVERVIEW
+Overview shows every open holding in one table. The market and trading
+currency appear beside each symbol. Unit prices and average acquisition
+cost, open position cost, market value and open P/L use that listing's currency,
+including US$ for USD and S$ for SGD. The four headline totals, allocation
+breakdown, portfolio weights and value-based sorting use SGD. The original
+amounts remain visible when an exchange rate is missing.
+
+For each open holding, the app multiplies its native value and fee-inclusive
+cost by the same latest available SGD rate, then rounds each amount to cents.
+Unrealised P/L is the difference. The app translates and rounds each sale's
+net proceeds and the selected method’s cost to SGD cents. Their difference is that
+sale's realised P/L. Monthly results and the headline add up those sale
+figures, including holdings sold in full. These figures
+exclude the effect of currency movements between the trade date and today.
+The Unrealised P/L card shows the gain or loss as a percentage of total
+open cost. The Realised P/L card shows the net gain or loss as a percentage
+of the matched purchase cost of shares sold, including their buy fees. Each
+percentage uses portfolio totals. A dash means the basis is zero or a
+required price or rate is unavailable.
+
+Use Refresh prices & FX to update share prices and exchange rates together.
+FX also checks automatically on opening Overview or the consolidated Realised
+P/L screen and every five minutes while either is open. Returning within a
+minute reuses the previous check. Open Exchange rates at the foot of Overview and expand the rate details
+to see each rate, source pair and Singapore time.
+Where needed, the app tries a reciprocal pair or a conversion through USD.
+While offline, it uses the last saved rate and shows the failed refresh.
+If a rate has never been available, the holdings stay visible and the affected
+totals wait for a rate. A fresh demo includes a dated USD/SGD rate for rehearsal.
+
+Weight is each position's share of total SGD market value. Group portfolio
+allocation by sector, market, currency, holding or brokerage. ETFs have
+their own sector group. Holdings without verified sector data appear under
+Unclassified. The doughnut and its key use matching colours. Its angles
+show current weights. A slice extends beyond the dotted ring when its current
+weight exceeds its share of invested cost. Select a chart segment or its label for its value, open cost, open gain,
+return, allocation at cost and underlying shares. Each holding shows its SGD value, percentage of that group and
+percentage of the whole portfolio. A brokerage group includes only the shares
+held with that broker. Order holdings by market value, unrealised P/L, return
+or symbol. Open a holding and choose Stock inquiry to see its lots or cost pools.
+
+Select the Realised P/L card to see all completed sales in SGD. The stock
+chart ranks tickers by their net gain or loss after fees, including shares
+sold in full. Gains extend right from zero and losses left. Choose a sale
+month to filter the stock chart, totals and individual sales. The monthly
+chart shows January through December and highlights the selected month.
+Tap a month for the exact amount and number of sales. With All months
+selected, Chart year is available when sales span several years. View lots
+opens the original FIFO purchases. View pool opens the AVCO calculation. Sales shown can switch the report and both
+charts to a single trading currency for comparison with a broker statement.
+
+DIVIDENDS AND INCOME
+Open Dividends and choose Record dividend. Select a stock from your trade
+history. Enter gross cash, withholding, payment currency and payment date
+from your broker. A currency can differ from the stock's trading currency.
+Add its ex-date and broker when available. Choose Expected for a payout
+notice or Received for a credit that has reached your account. The payment
+calendar lets you confirm a due receipt without making a second entry. Edit
+or remove a payment from Dividend records. The original cash record is kept
+independently of any later stock sale.
+
+Dividend yield and annual payout lets you switch between yield (%) and an
+annual net cash amount in SGD. Its three payout sources use different inputs.
+
+• Current-share estimate reapplies each eligible net dividend per share
+  from the trailing 12 months to the shares held today. Enter the ex-date
+  to establish entitlement. Record stock splits that occur between the ex-date
+  and today so the estimate can compare like share units.
+• Received past 12m adds actual net receipts on stocks still held today.
+• Expected next 12m adds the dated expected records for stocks still held.
+
+Yield divides recorded or estimated cash by the current market value of
+the whole group. Yield on cost uses the open cost for the same group.
+Coverage shows how many holdings contributed records. A dash marks missing
+data.
+Group the yield chart and income diversification doughnut independently by
+holding, asset class, sector, market or trading currency. The ring
+shows each share of annual net income for the selected payout source.
+Expand All income shares for the complete breakdown.
+
+Review payout opens a dialog with the holding, ex-dividend date, eligible
+shares, gross amount and suggested currency. Enter the payment date from your
+broker statement when Yahoo does not supply one. Verify the amount and tax
+before saving. Dividend dates are entered as DD-MM-YYYY.
+
+On wide windows, Dividends received over time and Dividends received by
+group sit side by side. The payment calendar is full width, with the expected
+12-month total and monthly average above the bars. The diversification chart
+keeps the doughnut prominent, with a compact legend beside it when there is room.
+Charts stack on phones.
+
+The payment calendar charts the expected records from today up to the same
+date next year, excluding that final date. Every calendar month in the window
+is shown, including zero-payment months. A mid-month start produces two
+partial months at the ends. The monthly average is the total divided by 12.
+Tap a bar or expand Monthly payment amounts to see exact totals. Open
+Manage scheduled payments to edit an upcoming payout or confirm a due
+receipt. Past-due unconfirmed payments remain in that list.
+
+The two received-dividend charts use the same period, including payments from
+stocks since sold. Select 12 trailing months, year to date, all time or a
+calendar year. The time chart supports monthly, quarterly and annual totals.
+The other chart groups cash by holding, asset class, sector, market or payment
+currency. Values use the latest available SGD rates, and the records retain
+their original amounts. Open each chart's figures for the exact breakdown.
+Scheduled dividends are shown in the payment calendar.
+
+Opening Dividends loads available Yahoo daily data for your stocks. Reported
+ex-dividend events are checked against units held before the ex-date. A
+same-day purchase is excluded. Review payout opens an editable entry. Verify
+the payment date, currency, amount and tax before saving. When the feed omits
+the payment currency, the currency and gross amount need your confirmation.
+Use one combined entry per distribution or separate entries for each broker.
+
+PERFORMANCE CHARTS
+Open Performance. Chart period controls the long-term timeline and its
+summary cards. Holdings value and net invested compares holdings
+value (solid navy) with cumulative net invested capital (dashed amber).
+Net invested capital includes purchases plus fees less
+net sale proceeds. Total gain including dividends shows your gain in SGD or Modified Dietz
+return in percent over the selected period. Actual net dividends enter on
+their payment dates. Purchases and sales are flows into or out of the stock
+portfolio. The model excludes unrecorded broker cash and interest.
+
+Tap a date for exact values or open Monthly closing values. The chart uses
+daily share prices and historical SGD FX, including UK penny-to-pound price
+conversion. A price or rate can carry forward up to ten calendar days. Gaps
+are visible if reliable inputs are missing or a split crosses an unreconciled
+open position. The Overview revalues both cost and value using the latest FX,
+so its gain can differ from the gain shown in Performance.
+
+Dynamics of portfolio returns restarts the Modified Dietz calculation in
+each calendar month. Select a range and optionally compare with the SPY
+S&P 500 ETF or the ES3.SI Straits Times ETF. The ETF bars use price returns
+in SGD for the same observed dates and exclude distributions and fees.
+A question mark marks an unavailable return. The first and current months
+can cover part of a month. Exact percentages are under Monthly return figures.
+
+Holdings performance ranks the securities still in your portfolio. Its
+period selector runs from one day to since inception. The calculation uses
+each security's own purchases, sales, expenses and received dividends at
+historical FX. One day compares the latest two available trading closes.
+For an investment opened during the selected period, it starts at purchase.
+
+Daily history is downloaded and cached when Performance, Dividends or a
+sector grouping needs it. Refresh market history requests new observations.
+Demo prices, cash records and history are labelled examples. My portfolio
+starts empty. The optional dividends.json and market_history.json files sit
+in each workspace, alongside the journal. Copy the whole data folder for a
+backup. If upgrading, install the new requirements to enable chart rendering.
+
+WATCHLIST, MARKET NEWS AND PRICE ALERTS
+Open Watchlist and choose Add to watchlist. Type a ticker or company name,
+choose the exchange listing and enter a watch price in its trading currency.
+The app sets the alert direction from the latest available quote. Open Alert
+settings to select a direction manually. Leave the watch price blank to track
+the quote only. Check prices now
+updates the latest quoted trade, day change and 52-week trading range.
+Trailing P/E displays the observation date supplied with the ratio. A dash
+indicates unavailable data and N/M indicates a nonpositive reported P/E.
+The table also shows the 12-month dividend yield (dividends per share with an
+ex-date in the last 12 months divided by the latest price) and trailing-twelve-
+month EPS, revenue and EBITDA in the company's reporting currency, each dated by
+its latest filing. These refresh once a day. ETFs and REITs may have no EPS or
+EBITDA, which shows as a dash.
+
+Distance to target compares the latest quote with the watch price. The
+percentage uses the watch price as its base. Choose Closest to watch price
+in the sort menu to rank by the percentage gap, regardless of currency.
+
+Gains and losses use an up arrow for a gain and a down arrow for a loss.
+
+Choose At or below for a potential entry price, or At or above for an upside
+level. Equality triggers either direction. A matching first observation
+creates an alert. Another alert requires a later observation back on the
+other side and a subsequent crossing. Quote times are shown in Singapore
+time. A brief intraday touch can be missed between available quotes.
+Quotes older than four days,
+manual marks and demo snapshots cannot trigger a target. Open Watchlist
+to see saved alerts, mark them read, edit targets or remove a listing.
+New alerts appear in the app without setup.
+
+On Watchlist, open Auto-refresh and choose 10 sec, 30 sec, 1 min, 2 min or
+3 min. The default is 1 min. Each workspace saves its own setting.
+Checks use the latest available quote from the feed. Keep the workspace
+open for in-app alerts. For checks with the window closed, keep one of
+these commands running on an online, awake computer with the same data
+folder. The monitor reads the saved interval for My portfolio.
+
+   Windows:      .venv\Scripts\python.exe main.py --monitor
+   macOS/Linux:  .venv/bin/python main.py --monitor
+
+For a single check, use --check-alerts in place of --monitor. You can run that
+command periodically with Windows Task Scheduler or cron. Use --data-dir for a
+nondefault portfolio location. Both modes monitor My portfolio.
+
+OPTIONAL EMAIL DELIVERY
+Configure the SMTP account provided by your email service. Set these
+environment variables in the terminal that starts the app and the monitor.
+On Windows Command Prompt use set NAME=value. On macOS or Linux use
+export NAME='value'. Use your own provider's values.
+
+   FOLIO_SMTP_HOST       SMTP server hostname
+   FOLIO_SMTP_FROM       Authorised sender address
+   FOLIO_SMTP_TO         Address where you want alerts delivered
+   FOLIO_SMTP_MODE       starttls (default) or ssl
+   FOLIO_SMTP_PORT       587 with STARTTLS, or 465 with SSL by default
+   FOLIO_SMTP_USER       Username, if your provider requires authentication
+   FOLIO_SMTP_PASSWORD   Provider password or app password
+
+Restart the app with those settings, switch to My portfolio, then use
+Alert settings to choose Also email this alert for each target that should
+send mail. Watchlist shows Pending, Sent or Retry
+for email alerts. Failed sends retry during later checks. Email credentials
+stay in the process environment. Demo alerts are local to the demo workspace.
+
+Open Market news and choose My holdings or Watchlist. The optional Stock
+selector narrows the active list to one ticker. Yahoo Finance ticker feeds may
+carry industry stories related to a covered listing. Duplicate links are
+merged, and feeds are cached for 15 minutes. Refresh headlines checks
+immediately. Saved news stays available when the feed cannot be reached.
+
+UPGRADE AND CORRECT OLDER SYMBOLS
+Stop the old app. Extract the new ZIP to a different folder. If you recorded
+trades or dividends, copy your entire existing data folder beside the new
+main.py before launching. You can also keep the folder in place and launch
+with main.py --data-dir "path/to/your/data". Create a fresh virtual environment
+in the new app folder and install requirements using the commands above.
+Earlier USD-only records retain their original USD amounts.
+For NVIDIA, go to Transactions, edit its row, enter NVDA, check the listing
+and save. If several buys or sales share the typo, select the option to
+correct all matching trades in one save. For an old ME8U record, confirm
+that the recorded prices and fees really were SGD before correcting them.
+The correction keeps the recorded numbers and updates their currency label.
+
+STOCK INQUIRY AND RECOVERY PLANNER
+Choose a ticker in either screen to see its company name, exchange, trading
+currency, and latest available price with its source and UTC timestamp.
+The holding cards show the market price, units, brokerage count, open cost and
+unrealised P/L in the trading currency. Find average cost under Open cost basis
+and market value under Unrealised P/L. My portfolio
+checks the selected quote automatically and reuses a check for five minutes.
+Refresh quote requests a new observation. After a failed refresh, the last
+saved price and its timestamp stay visible. The demo starts with dated
+sample prices. Stock inquiry also accepts a manual market price.
+
+In the recovery planner the latest quote supplies the initial target selling
+price and further buy price. You can edit both. Refreshing the quote keeps
+your entered prices and any calculated scenario. Hypothetical buys and sales
+do not change the trade journal.
+
+The data folder sits beside main.py. To back up, stop the app and copy the data
+folder. Restore by copying that folder back while the app is closed. A different
+folder may be chosen with --data-dir. Yahoo Finance receives stock searches,
+stock symbols and currency pairs. The trade journal is stored locally.
+
+OPTIONAL OFFLINE DESKTOP DEMO
+A native Flet window can be used after the desktop client is installed.
+On Windows, run these commands while online.
+   .venv\Scripts\python.exe -m pip install -r requirements.txt "flet[desktop]>=1.0.0"
+   .venv\Scripts\python.exe main.py --desktop
+Open it once while online so Flet can download its matching desktop client.
+
+VERIFY
+   .venv\Scripts\python.exe -m unittest -v
+   On macOS or Linux use .venv/bin/python -m unittest -v
+
+Run benchmark.py with the same Python interpreter to reproduce the replay
+benchmark for 1,000, 10,000 and 50,000 shuffled trades.
+
+See Folio_Ledger_Report.docx for the design, calculation rules, examples,
+screenshots and a 4 minute 45 second recording outline. Complete your personal
+reflection, keep your own prompt evidence and debugging notes, and paste the
+recorded presentation link and access password (if any) into VIDEO_LINK.txt.
+
+
+ADDITIONAL TOOLS
+----------------
+Risk        Concentration, currency, volatility and drawdown warnings. Uses cached
+            daily history (press Refresh market history once). Thresholds are in
+            analytics.py: 25% in one stock, 60% in the top three, 40% in one
+            sector or market, 70% in foreign currencies, 20% below the 1-year high.
+Rebalance   Set a target percentage per holding. A blank leaves its allocation
+            alone. For deposits, enable Allow sales to fund purchases by selling
+            overweight holdings or leave it off to buy using new cash only.
+            Withdrawal mode estimates sales needed to release cash. Fractional
+            shares use six decimals. Set a minimum trade in SGD if needed.
+            Calculate plan shows suggested trades and revised allocation.
+            Fees and tax are excluded. Save targets keeps them in targets.json.
+Digest      Value, change at the latest close, movers, dividends due, unread alerts,
+            risk flags and headlines. Save as text, or email it when SMTP is set.
+            Without opening the app:
+                python main.py --digest                (personal portfolio)
+                python main.py --digest --demo         (demo portfolio)
+                python main.py --digest --refresh      (fetch fresh prices first)
+                python main.py --digest --email        (send via the SMTP settings)
+            Schedule it daily with Windows Task Scheduler or cron.
+Copilot     Ask questions in plain English. It works immediately with built-in
+            answers. To add a language model, set environment variables first:
+                FOLIO_LLM_PROVIDER = ollama | openai | anthropic | gemini
+                FOLIO_LLM_MODEL    (optional, e.g. llama3.1)
+                FOLIO_LLM_KEY      (not needed for ollama)
+                FOLIO_LLM_URL      (optional, e.g. a remote Ollama host)
+            Windows (PowerShell):  $env:FOLIO_LLM_PROVIDER="ollama"
+            A configured provider receives the question and selected computed
+            facts. The app runs the portfolio calculations locally and uses its
+            own answer if the request fails or model wording introduces an
+            unrecognised multi-digit figure. A local Ollama server can keep
+            this interaction on your computer.
+
+READING THE SCREENS
+Overview     See details opens the analysis behind a portfolio insight.
+             Latest moves and headlines links to the stock's news feed.
+             Recent and upcoming events lists ex-dividend and payment dates.
+             See all opens Dividends.
+Transactions A sale that closes a position is tagged Sold in full. Longer tables
+             have horizontal scrolling and 25 trades per page.
+Dividends    Average annual growth uses complete years of recorded per-share
+             distributions. Expand a chart's figures to read exact values.
+Charts       Use the hover guide on the stock and performance timelines.
+             Allocation and income charts retain each group in the legend.
+
+The bundled demo is generated by scripts/make_demo_data.py. The automated tests
+use the small reference set in test_fixtures. Use a separate folder when you
+want to load the expanded demo without disturbing your original workspace.
+For a split that creates a cash-in-lieu payment, reconcile this cash item
+against your statement outside the split record.
